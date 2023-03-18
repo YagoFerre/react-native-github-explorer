@@ -18,17 +18,19 @@ export function CardAnimation({ children, ...rest }: CardAnimationProps) {
   const cardOffset = useSharedValue(0.25 * displayWidth);
 
   const animatedStyle = useAnimatedStyle(() => {
+    const opacity = cardOpacity.value;
+    const translateX = cardOffset.value;
     return {
-      opacity: cardOpacity.value,
+      opacity,
       transform: [
-        { translateX: cardOffset.value }
+        { translateX }
       ]
     }
   })
 
   useEffect(() => {
-    cardOpacity.value = withTiming(1, { duration: 500 });
-    cardOffset.value = withTiming(0, { duration: 500 });
+    cardOpacity.value = withTiming(1, { duration: 1000 });
+    cardOffset.value = withTiming(0, { duration: 1000 });
   }, []);
 
   return (
